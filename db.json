@@ -4,13 +4,13 @@
       "id": 1,
       "name": "Woody",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
-      "likes": 33
+      "likes": 34
     },
     {
       "id": 2,
       "name": "Buzz Lightyear",
       "image": "http://www.pngmart.com/files/6/Buzz-Lightyear-PNG-Transparent-Picture.png",
-      "likes": 14
+      "likes": 11
     },
     {
       "id": 3,
@@ -46,7 +46,25 @@
       "id": 8,
       "name": "Little Green Men",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Alien-PNG-File.png",
-      "likes": -2
+      "likes": 2
+    },
+    {
+      "name": "Meatwad",
+      "image": "https://media.entertainmentearth.com/assets/images/bb564405dbcf427d88b780907bebfb99lg.jpg",
+      "likes": 0,
+      "id": 9
+    },
+    {
+      "name": "Not Aquaman",
+      "image": "https://bbts1.azureedge.net/images/p/full/2023/03/3cc99246-f024-4865-8197-382c2e0a5423.jpg",
+      "likes": 0,
+      "id": 10
+    },
+    {
+      "name": "Skeletor",
+      "image": "https://i5.walmartimages.com/asr/f281746a-7546-4597-a9b8-daeb0498b152.4501f804bc8edbb4ba66eed4f7a5b643.jpeg",
+      "likes": 0,
+      "id": 11
     }
   ]
 }
