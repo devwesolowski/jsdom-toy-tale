@@ -1,18 +1,15 @@
-console.log("Page reloaded " + Math.random());
-
 const addBtn = document.querySelector("#new-toy-btn");
 const toyFormContainer = document.querySelector(".add-container");
 
+//temp global id to pass through toy to be updated
 let toyUpdateId = 99999999;
-let toyUpdateName = "";
-let toyUpdateImage = "";
 
 let addToy = false;
 let url = "http://localhost:3000/toys";
 
+//click add new toy to reveal form
 document.addEventListener("DOMContentLoaded", () => {
   addBtn.addEventListener("click", () => {
-    // hide & seek with the form
     addToy = !addToy;
     if (addToy) {
       toyFormContainer.style.display = "block";
@@ -21,8 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  //grabs toys and renders
   getToys();
 
+  //submit button for add new toy submits data to server
   document.querySelector(".add-toy-form").addEventListener("submit", (e) => {
     e.preventDefault();
     addNewToy({
@@ -32,13 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  //edit toy submit button submits data to server
   document.querySelector(".edit-toy-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("EDIT TOY HIT");
     updateToy(toyUpdateId, e.target.name.value, e.target.image.value);
   });
 });
 
+//calls api to grab array of toys, then runs through and has each one rendered
 function getToys() {
   fetch(url)
     .then((res) => res.json())
@@ -50,12 +50,15 @@ function getToys() {
   // toys.forEach((toy) => renderToy(toy));
 }
 
+//creates the structure and injects data for each toy
 function renderToy(toy) {
   const toyCollectionContainer = document.getElementById("toy-collection");
 
+  //Creates each toys container
   const toyCard = document.createElement("div");
   toyCard.className = "card";
 
+  //Delete Toy Button
   const toyDelete = document.createElement("button");
   toyDelete.className = "delete-btn";
   toyDelete.innerText = "Delete Toy";
@@ -66,6 +69,7 @@ function renderToy(toy) {
     deleteToy(toy.id);
   });
 
+  //Edit Toy Button which opens edit form and saves currently editable toys id
   const toyEdit = document.createElement("button");
   const toyEditContainer = document.querySelector(".edit-container");
   const toyEditNameInput = document.getElementById("edit-name-input");
@@ -73,9 +77,6 @@ function renderToy(toy) {
   let editToy = false;
   toyEdit.className = "edit-btn";
   toyEdit.innerText = "Edit Toy";
-  // toyEdit.onclick = () => {
-  //   return confirm("Are you sure you would like to delete this toy?");
-  // };
   toyEdit.addEventListener("click", (e) => {
     editToy = !editToy;
     if (editToy) {
@@ -88,18 +89,22 @@ function renderToy(toy) {
     }
   });
 
+  //Toy name
   const toyName = document.createElement("h2");
   toyName.innerText = toy.name;
 
+  //Toy image
   const toyImage = document.createElement("img");
   toyImage.setAttribute("src", toy.image);
   toyImage.className = "toy-avatar";
 
+  //Toy likes
   const toyLikesContainer = document.createElement("p");
   const toyLikeCount = document.createElement("span");
   toyLikeCount.className = "like-count";
   toyLikeCount.innerText = toy.likes;
 
+  //Toy Like button, that increases likes of toy when pressed
   const likeButton = document.createElement("button");
   likeButton.className = "like-btn";
   likeButton.innerText = "Like <3";
@@ -159,13 +164,9 @@ function deleteToy(toy) {
 }
 
 function updateToy(toy, toyName, toyImage) {
-  // {
-  //   name: e.target.name.value,
-  //   image: e.target.image.value,
-  //   likes: 0,
-  // }
-
   let patchOptions;
+  //if no toyName is passed through, only update image. Else if no toyImage passed
+  //through, only update name. Else update them both
   if (toyName === "") {
     patchOptions = {
       method: "PATCH",
@@ -173,7 +174,6 @@ function updateToy(toy, toyName, toyImage) {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify({
-        // name: toyName,
         image: toyImage,
       }),
     };
@@ -185,7 +185,6 @@ function updateToy(toy, toyName, toyImage) {
       },
       body: JSON.stringify({
         name: toyName,
-        // image: toyImage,
       }),
     };
   } else {
