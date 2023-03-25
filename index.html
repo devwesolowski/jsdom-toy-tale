@@ -13,7 +13,7 @@
       />
     </div>
 
-    <div class="container">
+    <div class="add-container container">
       <form class="add-toy-form">
         <h3>Create a toy!</h3>
 
@@ -23,6 +23,7 @@
           value=""
           placeholder="Enter a toy's name..."
           class="input-text"
+          required
         />
         <br />
         <input
@@ -31,6 +32,7 @@
           value=""
           placeholder="Enter a toy's image URL..."
           class="input-text"
+          required
         />
         <br />
         <input
@@ -41,7 +43,38 @@
         />
       </form>
     </div>
-    <p style="text-align:center">
+    <div class="edit-container container">
+      <form class="edit-toy-form">
+        <h3>
+          You can edit one at a time or both. Please enter new toy information
+        </h3>
+        <input
+          type="text"
+          name="name"
+          value=""
+          placeholder="Enter new toy's name..."
+          class="input-text"
+          id="edit-name-input"
+        />
+        <br />
+        <input
+          type="text"
+          name="image"
+          value=""
+          placeholder="Enter new toy's image URL..."
+          class="input-text"
+          id="edit-image-input"
+        />
+        <br />
+        <input
+          type="submit"
+          name="submit"
+          value="Edit Toy Information"
+          class="submit"
+        />
+      </form>
+    </div>
+    <p style="text-align: center">
       Andy needs your help! <button id="new-toy-btn">Add a new toy!</button>
     </p>
 
